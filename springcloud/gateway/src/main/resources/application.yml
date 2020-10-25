@@ -1,0 +1,65 @@
+server:
+  port: 20000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka
+spring:
+  application:
+    name: gateway
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: redis123
+    # 连接超时时间（毫秒）
+    timeout: 50000
+    # Redis默认情况下有16个分片，这里配置具体使用的分片，默认是0
+    database: 0
+    lettuce:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制） 默认 8
+        max-active: 20
+        # 连接池最大阻塞等待时间（使用负值表示没有限制） 默认 -1
+        max-wait: -1
+        # 连接池中的最大空闲连接 默认 8
+        max-idle: 8
+        # 连接池中的最小空闲连接 默认 0
+        min-idle: 4
+
+  cloud:
+    gateway:
+      enabled: true
+      routes:
+        - id: fegin_user
+          uri: lb://FEGIN-USER
+          predicates:
+            - Path=/fegin/**  #fegin开头的请求负载到 FEGIN-USER微服务
+          filters:
+            - StripPrefix=1  #请求路径去掉第一个前缀(fegin)
+            - name: RequestRateLimiter
+              args:
+                #限流匹配规则,启动类配置注入的bean myKeyResolver
+                key-resolver: '#{@myKeyResolver}'
+                #每秒往令牌桶里面放令牌的数量
+                redis-rate-limiter.replenishRate: 10
+                #令牌桶最大容量
+                redis-rate-limiter.burstCapacity: 100
+            - name: Hystrix
+              args:
+                name: default #服务降级,请求转发
+                fallbackUri: forward:/gateway/HystrixFallBack
+
+        - id: service_ribbon
+          uri: lb://SERVICE-RIBBON
+          predicates:
+            - Path=/ribbon/**  #ribbon开头的请求负载到 SERVICE-RIBBON微服务
+          filters:
+            - StripPrefix=1
+            - name: RequestRateLimiter
+              args:
+                #限流匹配规则
+                key-resolver: '#{@myKeyResolver}'
+                #每秒往令牌桶里面放令牌的数量
+                redis-rate-limiter.replenishRate: 5
+                #令牌桶最大容量
+                redis-rate-limiter.burstCapacity: 50

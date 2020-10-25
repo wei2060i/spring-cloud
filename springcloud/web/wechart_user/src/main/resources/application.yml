@@ -1,0 +1,48 @@
+server:
+  port: 9090
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/chat?characterEncoding=utf8&serverTimezone=Hongkong&useSSL=false&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 3
+      idle-timeout: 100
+      max-lifetime: 1800000
+      connection-timeout: 500
+      login-timeout: 500
+      validation-timeout: 1000
+      initialization-fail-timeout: 1000
+      connection-test-query: select 1
+
+  application:
+    name: fegin-user
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka
+
+#Feign默认整合了Hystrix的依赖，所以无需再添加依赖,开启断路器
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        #开启熔断器功能
+        enabled: true
+        #当在配置时间窗口内达到此数量的失败后,打开熔断器
+        requestVolumeThreshold: 5
+        #熔断器开启后，会每隔一段时间(这里设置5s)进入半开状态
+        sleepWindowInMilliseconds: 5000
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID

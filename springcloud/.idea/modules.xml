@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/entity/entity.iml" filepath="$PROJECT_DIR$/entity/entity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka_server/eureka_server.iml" filepath="$PROJECT_DIR$/eureka_server/eureka_server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/ribbon/ribbon.iml" filepath="$PROJECT_DIR$/web/ribbon/ribbon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud.iml" filepath="$PROJECT_DIR$/springcloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/utiliy/utiliy.iml" filepath="$PROJECT_DIR$/utiliy/utiliy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/wechart_user/wechart_user.iml" filepath="$PROJECT_DIR$/web/wechart_user/wechart_user.iml" />
+    </modules>
+  </component>
+</project>

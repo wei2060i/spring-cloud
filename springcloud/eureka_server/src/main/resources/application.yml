@@ -1,0 +1,19 @@
+server:
+  port: 8080
+eureka:
+  client:
+    register-with-eureka: false #禁止自己当做服务注册
+    fetch-registry: false #禁止当前微服务去调用其他微服务
+    service-url:
+      defaultZone: http://localhost:8080/eureka
+  server:
+    #关闭自我保护机制,如果有微服务停止发生心跳则会立即移除掉(不推荐)
+    enable-self-preservation: true
+    #降低触发自我保护机制的比例,必须更多的微服务不发心跳时,才触发自我保护机制(不推荐)
+    renewal-percent-threshold: 0.85
+
+#配置应用的名称,不能用划线 _
+spring:
+  application:
+    name: eureka-server
+#启动注册中心 http://localhost:8080

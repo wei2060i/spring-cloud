@@ -1,0 +1,29 @@
+src: web/wechart_user #这里每次注意修改位置 web/wechart_user
+author: Wei
+pack:
+  parent: com.wechart_user #这里每次注意修改位置
+  dao: dao
+  entity: model.po
+  service: service
+  serviceImpl: service.impl
+  controller: controller
+  overwriter:
+#    - po
+#    - dao
+#    - service
+#    - serviceImpl
+#    - controller
+    - mapperXml   #在resources中生成mapper.xml
+
+url: jdbc:mysql://127.0.0.1:3306/chat?characterEncoding=utf8&serverTimezone=Hongkong&useSSL=false&allowPublicKeyRetrieval=true
+username: root
+password: 123456
+driverName: com.mysql.jdbc.Driver
+
+table:
+  prefix: t_
+  #要生成的表，
+  include:
+    - t_user
+  #要排除的表
+  exclude:
