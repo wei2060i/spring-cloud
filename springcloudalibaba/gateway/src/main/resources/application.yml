@@ -1,0 +1,29 @@
+server:
+  port: 9090
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      enabled: true
+      discovery:
+        locator:
+          enabled: true #开启按照路由名称进行路由,默认也是开启
+      routes:
+        - id: web-user
+          uri: lb://web-user
+          predicates:
+            - Path=/user/**  #user开头的请求负载到web-user微服务
+          filters:
+            - StripPrefix=1  #请求路径去掉第一个前缀(user)
+        - id: web-order
+          uri: lb://web-order
+          predicates:
+            - Path=/order/**  #order开头的请求负载到web-order微服务
+          filters:
+            - StripPrefix=1  #请求路径去掉第一个前缀(order)
+
+
+  application:
+    name: gateway
