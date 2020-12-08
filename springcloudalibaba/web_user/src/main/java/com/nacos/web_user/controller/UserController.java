@@ -1,6 +1,9 @@
 package com.nacos.web_user.controller;
 
 import com.nacos.web_user.feign.IOrderFeignService;
+import com.nacos.web_user.model.po.User;
+import com.nacos.web_user.service.IUserService;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,13 +14,13 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
     @Resource
-    private IOrderFeignService orderFeignService;
+    private IUserService userService;
 
     @GetMapping
     private String hello() {
-        System.out.println("发射");
-        return orderFeignService.hello();
+        return userService.hello();
     }
 
     @GetMapping("list")

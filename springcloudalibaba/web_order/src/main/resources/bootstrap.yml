@@ -1,0 +1,39 @@
+server:
+  port: 9092
+
+spring:
+  application:
+    name: web-order
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+seata:
+  tx-service-group: wei_tx_group
+  enabled: true
+  enable-auto-data-source-proxy: false
+  service:
+    vgroup-mapping:
+      my_test_tx_group: wei_tx_group # my_test_tx_group改成config.text中自己的事务分组名称
+    grouplist:
+      default: 127.0.0.1:8091
+    enable-degrade: false
+    disable-global-transaction: false
+  config:
+    type: nacos
+    nacos:
+      namespace:
+      serverAddr: 127.0.0.1:8848
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      group: SEATA_GROUP
+      namespace:
+      username: nacos
+      password: nacos
