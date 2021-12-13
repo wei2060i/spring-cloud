@@ -13,33 +13,33 @@ spring:
        # namespace: 1d41cd2d-f528-4980-904c-618233c45862
         group: DEFAULT_GROUP
 #dataId命名格式  ${prefix}-${spring.profiles.active}.${file-extension}
-    sentinel:
-      transport:
-        dashboard: 127.0.0.1:10000
-        #数据交互,默认 8719端口,假如被占用从8719开始+1扫描直到直到未被占用的端口
-        port: 8719
-      datasource: #持久化
-        ds1:
-          nacos:
-            server-addr: 127.0.0.1:8848
-            data-id: mz-sentinel
-            group-id: DEFAULT_GROUP
-            data-type: json
-            rule-type: flow
+#    sentinel:
+#      transport:
+#        dashboard: 127.0.0.1:10000
+#        #数据交互,默认 8719端口,假如被占用从8719开始+1扫描直到直到未被占用的端口
+#        port: 8719
+#      datasource: #持久化
+#        ds1:
+#          nacos:
+#            server-addr: 127.0.0.1:8848
+#            data-id: mz-sentinel
+#            group-id: DEFAULT_GROUP
+#            data-type: json
+#            rule-type: flow
 
 feign:
   sentinel:
     enabled: true #开启 feign支持
-  client:
-    config:
-      default:
-        connect-timeout: 10
-        readTimeout: 50000 #feign超时时间设置
+#  client:
+#    config:
+#      default:
+#        connect-timeout: 10
+#        readTimeout: 50000 #feign超时时间设置
 
 seata:
   tx-service-group: wei_tx_group
   enabled: true
-  enable-auto-data-source-proxy: false
+  enable-auto-data-source-proxy: false #设为true就不用再手动配置数据源代理
   service:
     vgroup-mapping:
       my_test_tx_group: wei_tx_group # my_test_tx_group改成config.text中自己的事务分组名称
@@ -50,7 +50,7 @@ seata:
   config:
     type: nacos
     nacos:
-      namespace:
+      namespace: 1d687621-ec19-485c-8f35-4cdfe3c4e31c
       serverAddr: 127.0.0.1:8848
       group: SEATA_GROUP
       username: nacos
@@ -61,6 +61,6 @@ seata:
       application: seata-server
       server-addr: 127.0.0.1:8848
       group: SEATA_GROUP
-      namespace:
+      namespace: 1d687621-ec19-485c-8f35-4cdfe3c4e31c
       username: nacos
       password: nacos

@@ -10,6 +10,9 @@ import org.springframework.util.StringUtils;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
+/**
+ * @author Wei
+ */
 @Configuration
 public class SeataDataSourceConfig {
 

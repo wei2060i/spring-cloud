@@ -1,9 +1,7 @@
 package com.nacos.web_user.controller;
 
-import com.nacos.web_user.feign.IOrderFeignService;
-import com.nacos.web_user.model.po.User;
 import com.nacos.web_user.service.IUserService;
-import io.seata.spring.annotation.GlobalTransactional;
+import org.springframework.aop.framework.AopContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author Wei
+ */
 @RestController
 @RequestMapping("/user")
 public class UserController {

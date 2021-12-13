@@ -1,9 +1,3 @@
-创建seata数据库,导入seata.sql并且在参与分布式事务的数据库导入undo_log.sql;
-1、这里下载seata1.4;
-2、将文件nacos-config.sh 放在 ./seata/conf下;
-3、将文件config.txt(注意修改里面的配置vgroupMapping和数据库)放在 ./seata 文件夹下;
-4、./seata/conf 下面的file.conf和registry.conf修改对应的数据库信息;
-5、进入目录./seata/conf,执行sh nacos-config.sh -h 127.0.0.1   推送配置到nacos
--h 后面地址是配置好的nacos地址
+我的博客配置:https://blog.csdn.net/qq_40721300/article/details/121891706
 
 其他稳定说明https://www.yuque.com/lvlaotou/blog/hmiv2o#fd6652cb

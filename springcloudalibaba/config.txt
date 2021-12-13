@@ -3,7 +3,7 @@ store.mode=db
 store.db.datasource=druid
 store.db.dbType=mysql
 store.db.driverClassName=com.mysql.jdbc.Driver
-store.db.url=jdbc:mysql://127.0.0.1:3306/seata?useUnicode=true
+store.db.url=jdbc:mysql://127.0.0.1:3306/seata?rewriteBatchedStatements=true&characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=UTC&serverTimezone=Asia/Shanghai
 store.db.user=root
 store.db.password=123456
 store.db.minConn=5

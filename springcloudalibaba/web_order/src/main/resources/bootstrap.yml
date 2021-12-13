@@ -23,7 +23,7 @@ seata:
   config:
     type: nacos
     nacos:
-      namespace:
+      namespace: 1d687621-ec19-485c-8f35-4cdfe3c4e31c
       serverAddr: 127.0.0.1:8848
       group: SEATA_GROUP
       username: nacos
@@ -34,6 +34,6 @@ seata:
       application: seata-server
       server-addr: 127.0.0.1:8848
       group: SEATA_GROUP
-      namespace:
+      namespace: 1d687621-ec19-485c-8f35-4cdfe3c4e31c
       username: nacos
       password: nacos

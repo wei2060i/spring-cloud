@@ -10,6 +10,9 @@ import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
 
+/**
+ * @author Wei
+ */
 @Component
 public class GlobalGateWayFilter implements GlobalFilter, Ordered {
     @Override
